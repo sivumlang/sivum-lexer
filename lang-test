@@ -1,0 +1,123 @@
+current.IsMut(0);
+max.IsMut(0);
+
+file.Is(io.ReadFile("data.txt"));
+lines.Is(file.MutClone.SplitNewLine());
+
+for line.IsParam(String):lines {
+    if line.IsWhitespace {
+        max.Set.Max(current);
+    } else {
+        value.IsErr(Int.Parse(line));
+        if value.ok {
+            current.Set.Add(value);
+        } else {
+            continue;
+        }
+    }
+}
+
+max.Set.Max(current);
+return max;
+
+/////////////////////////
+//A note: I have ID_DEC which is supposed to ID a declaration function. Maybe should be ID_FUN
+//A note: I have ID_TYPE which is supposed to be an id for a type base. Maybe should be ID_VAR
+
+ID_VAR(current)
+DOT
+ID_DEC(IsMut)
+SEP_OP
+LIT_INT(0)
+SEP_CP
+SEP_SEMI
+ID_VAR(max)
+DOT
+ID_DEC(IsMut)
+SEP_OP
+LIT_INT(0)
+SEP_CP
+ID_VAR(file)
+DOT
+ID_DEC(Is)
+SEP_OP
+ID_VAR(io)
+DOT
+ID_FUN(ReadFile)
+SEP_OP
+LIT_STR(data.txt)
+SEP_CP
+SEP_CP
+SEP_SEMI
+KW_FOR
+ID_VAR(line)
+DOT
+ID_DEC(IsParam)
+SEP_OP
+ID_TYPE(String)
+SEP_CP
+SEP_COL
+ID_VAR(lines)
+SEP_OCB
+KW_IF
+ID_VAR(line)
+DOT
+ID_FUN(IsWhitespace)
+SEP_OCB
+ID_VAR(max)
+DOT
+ID_FUN(Set)
+ID_FUN(Max)
+SEP_OP
+ID_VAR(current)
+SEP_CP
+SEP_SEMI
+SEP_CCB
+KW_ELSE
+SEP_OCB
+ID_VAR(value)
+DOT
+ID_DEC(IsErr)
+SEP_OP
+ID_TYPE(Int)
+DOT
+ID_FUN(Parse)
+SEP_OP
+ID_VAR(line)
+SEP_CP
+SEP_CP
+SEP_SEMI
+KW_IF
+ID_VAR(value)
+DOT
+ID_FUN(ok)
+SEP_OCB
+ID_VAR(current)
+DOT
+ID_FUN(Set)
+ID_FUN(Add)
+SEP_OP
+ID_VAR(value)
+SEP_CP
+SEP_SEMI
+SEP_CCB
+KW_ELSE
+SEP_OCB
+KW_CONT
+SEP_SEMI
+SEP_CCB
+SEP_CCB
+SEP_CCB
+ID_VAR(max)
+DOT
+ID_FUN(Set)
+DOT
+ID_FUN(Max)
+SEP_OP
+ID_VAR(current)
+SEP_CP
+SEP_SEMI
+KW_RET
+ID_VAR(max)
+SEP_SEMI
+
