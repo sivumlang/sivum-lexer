@@ -1,29 +1,36 @@
-current.IsMut(0);
-max.IsMut(0);
+fun main() {
+  current.IsMut(0);
+  max.IsMut(0);
 
-file.Is(io.ReadFile("data.txt"));
-lines.Is(file.MutClone.SplitNewLine());
+  file.Is(io.ReadFile("data.txt"));
+  lines.Is(file.MutClone.SplitNewLine());
 
-for line.IsParam(String):lines {
+  for line.IsParam(String):lines {
     if line.IsWhitespace {
-        max.Set.Max(current);
+      max.Set.Max(current);
     } else {
-        value.IsErr(Int.Parse(line));
-        if value.ok {
-            current.Set.Add(value);
-        } else {
-            continue;
-        }
+      value.IsErr(Int.Parse(line));
+      if value.ok {
+        current.Set.Add(value);
+      } else {
+        continue;
+      }
     }
-}
+  }
 
-max.Set.Max(current);
-return max;
+  max.Set.Max(current);
+  return max;
+}
 
 /////////////////////////
 //A note: I have ID_DEC which is supposed to ID a declaration function. Maybe should be ID_FUN
 //A note: I have ID_TYPE which is supposed to be an id for a type base. Maybe should be ID_VAR
 
+KW_FUN
+ID_FUN_DEC
+SEP_OP
+SEP_CP
+SEP_OCB
 ID_VAR(current)
 DOT
 ID_DEC(IsMut)
@@ -120,4 +127,5 @@ SEP_SEMI
 KW_RET
 ID_VAR(max)
 SEP_SEMI
+SEP_CCB
 
